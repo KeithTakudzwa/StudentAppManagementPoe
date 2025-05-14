@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="StudentInfoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Gmail" />
+          </Key>
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="Gmail" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Modules">
+          <Key>
+            <PropertyRef Name="Course_Code" />
+          </Key>
+          <Property Name="Course_Code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Monday" Type="varchar" MaxLength="50" />
+          <Property Name="Tuesday" Type="varchar" MaxLength="50" />
+          <Property Name="Wednesday" Type="varchar" MaxLength="50" />
+          <Property Name="Thursday" Type="varchar" MaxLength="50" />
+          <Property Name="Friday" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Reg">
+          <Key>
+            <PropertyRef Name="Student_id" />
+          </Key>
+          <Property Name="Student_id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="First_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Last_name" Type="varchar" MaxLength="50" />
+          <Property Name="Course_Code" Type="int" />
+          <Property Name="Module_Code" Type="int" />
+        </EntityType>
+        <EntityType Name="SelfStudy">
+          <Key>
+            <PropertyRef Name="Module_Code" />
+          </Key>
+          <Property Name="Module_Code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Module_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Module_Credit" Type="varchar" MaxLength="50" />
+          <Property Name="Class_Hours_Per_Week" Type="varchar" MaxLength="50" />
+          <Property Name="StartDate" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Reg_Modules">
+          <End Role="Modules" Type="Self.Modules" Multiplicity="1" />
+          <End Role="Reg" Type="Self.Reg" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Modules">
+              <PropertyRef Name="Course_Code" />
+            </Principal>
+            <Dependent Role="Reg">
+              <PropertyRef Name="Student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reg_SelfStudy">
+          <End Role="SelfStudy" Type="Self.SelfStudy" Multiplicity="1" />
+          <End Role="Reg" Type="Self.Reg" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SelfStudy">
+              <PropertyRef Name="Module_Code" />
+            </Principal>
+            <Dependent Role="Reg">
+              <PropertyRef Name="Student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StudentInfoModelStoreContainer">
+          <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modules" EntityType="Self.Modules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reg" EntityType="Self.Reg" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SelfStudy" EntityType="Self.SelfStudy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Reg_Modules" Association="Self.FK_Reg_Modules">
+            <End Role="Modules" EntitySet="Modules" />
+            <End Role="Reg" EntitySet="Reg" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reg_SelfStudy" Association="Self.FK_Reg_SelfStudy">
+            <End Role="SelfStudy" EntitySet="SelfStudy" />
+            <End Role="Reg" EntitySet="Reg" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="StudentInfoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Gmail" />
+          </Key>
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Gmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="Course_Code" />
+          </Key>
+          <Property Name="Course_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Monday" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Tuesday" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Wednesday" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Thursday" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Friday" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Reg" Relationship="Self.FK_Reg_Modules" FromRole="Modules" ToRole="Reg" />
+        </EntityType>
+        <EntityType Name="Reg">
+          <Key>
+            <PropertyRef Name="Student_id" />
+          </Key>
+          <Property Name="Student_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Course_Code" Type="Int32" />
+          <Property Name="Module_Code" Type="Int32" />
+          <NavigationProperty Name="Module" Relationship="Self.FK_Reg_Modules" FromRole="Reg" ToRole="Modules" />
+          <NavigationProperty Name="SelfStudy" Relationship="Self.FK_Reg_SelfStudy" FromRole="Reg" ToRole="SelfStudy" />
+        </EntityType>
+        <EntityType Name="SelfStudy">
+          <Key>
+            <PropertyRef Name="Module_Code" />
+          </Key>
+          <Property Name="Module_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Module_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Module_Credit" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Class_Hours_Per_Week" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StartDate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Reg" Relationship="Self.FK_Reg_SelfStudy" FromRole="SelfStudy" ToRole="Reg" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Reg_Modules">
+          <End Role="Modules" Type="Self.Module" Multiplicity="1" />
+          <End Role="Reg" Type="Self.Reg" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Modules">
+              <PropertyRef Name="Course_Code" />
+            </Principal>
+            <Dependent Role="Reg">
+              <PropertyRef Name="Student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Reg_SelfStudy">
+          <End Role="SelfStudy" Type="Self.SelfStudy" Multiplicity="1" />
+          <End Role="Reg" Type="Self.Reg" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SelfStudy">
+              <PropertyRef Name="Module_Code" />
+            </Principal>
+            <Dependent Role="Reg">
+              <PropertyRef Name="Student_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="StudentInfoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Logins" EntityType="Self.Login" />
+          <EntitySet Name="Modules" EntityType="Self.Module" />
+          <EntitySet Name="Regs" EntityType="Self.Reg" />
+          <EntitySet Name="SelfStudies" EntityType="Self.SelfStudy" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="FK_Reg_Modules" Association="Self.FK_Reg_Modules">
+            <End Role="Modules" EntitySet="Modules" />
+            <End Role="Reg" EntitySet="Regs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reg_SelfStudy" Association="Self.FK_Reg_SelfStudy">
+            <End Role="SelfStudy" EntitySet="SelfStudies" />
+            <End Role="Reg" EntitySet="Regs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="StudentInfoModelStoreContainer" CdmEntityContainer="StudentInfoEntities">
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="StudentInfoModel.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Gmail" ColumnName="Gmail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modules">
+            <EntityTypeMapping TypeName="StudentInfoModel.Module">
+              <MappingFragment StoreEntitySet="Modules">
+                <ScalarProperty Name="Course_Code" ColumnName="Course_Code" />
+                <ScalarProperty Name="Monday" ColumnName="Monday" />
+                <ScalarProperty Name="Tuesday" ColumnName="Tuesday" />
+                <ScalarProperty Name="Wednesday" ColumnName="Wednesday" />
+                <ScalarProperty Name="Thursday" ColumnName="Thursday" />
+                <ScalarProperty Name="Friday" ColumnName="Friday" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Regs">
+            <EntityTypeMapping TypeName="StudentInfoModel.Reg">
+              <MappingFragment StoreEntitySet="Reg">
+                <ScalarProperty Name="Student_id" ColumnName="Student_id" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+                <ScalarProperty Name="Course_Code" ColumnName="Course_Code" />
+                <ScalarProperty Name="Module_Code" ColumnName="Module_Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SelfStudies">
+            <EntityTypeMapping TypeName="StudentInfoModel.SelfStudy">
+              <MappingFragment StoreEntitySet="SelfStudy">
+                <ScalarProperty Name="Module_Code" ColumnName="Module_Code" />
+                <ScalarProperty Name="Module_Name" ColumnName="Module_Name" />
+                <ScalarProperty Name="Module_Credit" ColumnName="Module_Credit" />
+                <ScalarProperty Name="Class_Hours_Per_Week" ColumnName="Class_Hours_Per_Week" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="StudentInfoModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

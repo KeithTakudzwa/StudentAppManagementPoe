@@ -1,0 +1,63 @@
+﻿@model IEnumerable<StudentAppManagementPoe.Models.Reg>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Last_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Module_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Module.Monday)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SelfStudy.Module_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.First_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Last_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Module_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Module.Monday)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SelfStudy.Module_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Student_id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Student_id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Student_id })
+        </td>
+    </tr>
+}
+
+</table>

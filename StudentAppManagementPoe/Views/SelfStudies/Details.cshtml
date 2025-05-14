@@ -1,0 +1,58 @@
+﻿@model StudentAppManagementPoe.Models.SelfStudy
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SelfStudy</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Module_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Module_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Module_Credit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Module_Credit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Class_Hours_Per_Week)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Class_Hours_Per_Week)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Reg.First_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Reg.First_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Module_Code }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

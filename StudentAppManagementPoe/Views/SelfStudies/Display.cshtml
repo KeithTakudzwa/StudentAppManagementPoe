@@ -1,0 +1,58 @@
+﻿@model IEnumerable<StudentAppManagementPoe.Models.SelfStudy>
+
+@{
+    ViewBag.Title = "Display";
+    Layout = "~/Views/_LayoutPage1.cshtml";
+}
+
+<h2>Display</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Module_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Module_Credit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Class_Hours_Per_Week)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reg.First_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Module_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Module_Credit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Class_Hours_Per_Week)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Reg.First_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Module_Code }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Module_Code }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Module_Code })
+        </td>
+    </tr>
+}
+
+</table>
